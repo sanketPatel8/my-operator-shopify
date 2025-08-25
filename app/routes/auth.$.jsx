@@ -1,10 +1,10 @@
-// import { authenticate } from "../shopify.server";
+import { authenticate } from "../shopify.server";
 
-// export const loader = async ({ request }) => {
-//   await authenticate.admin(request);
+export const loader = async ({ request }) => {
+  await authenticate.admin(request);
 
-//   return null;
-// };
+  return null;
+};
 
 // app/routes/auth.$.jsx
 
@@ -74,29 +74,29 @@
 //   return redirect(url.toString(), { headers });
 // }
 
-import { redirect } from "@remix-run/node";
+// import { redirect } from "@remix-run/node";
 
-import { authenticate } from "../shopify.server";
+// import { authenticate } from "../shopify.server";
 
-export async function loader({ request }) {
-  try {
-    const { session, headers } = await authenticate.admin(request);
+// export async function loader({ request }) {
+//   try {
+//     const { session, headers } = await authenticate.admin(request);
 
-    // (optional) save to DB here once crash is fixed
+//     // (optional) save to DB here once crash is fixed
 
-    const next = process.env.NEXT_APP_URL || "/";
+//     const next = process.env.NEXT_APP_URL || "/";
 
-    const url = new URL(
-      next,
-      process.env.SHOPIFY_APP_URL || "https://my-operator-shopify.vercel.app",
-    );
+//     const url = new URL(
+//       next,
+//       process.env.SHOPIFY_APP_URL || "https://my-operator-shopify.vercel.app",
+//     );
 
-    url.searchParams.set("shop", session.shop);
+//     url.searchParams.set("shop", session.shop);
 
-    return redirect(url.toString(), { headers });
-  } catch (e) {
-    console.error("AUTH ROUTE ERROR:", e);
+//     return redirect(url.toString(), { headers });
+//   } catch (e) {
+//     console.error("AUTH ROUTE ERROR:", e);
 
-    return new Response("Auth error: " + (e?.message || e), { status: 500 });
-  }
-}
+//     return new Response("Auth error: " + (e?.message || e), { status: 500 });
+//   }
+// }
