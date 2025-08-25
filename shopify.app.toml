@@ -1,0 +1,32 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+client_id = "55e17ec0f749c572212b3f5d25915a5b"
+name = "my-operator"
+handle = "my-operator"
+application_url = "https://segment-stranger-trunk-cloth.trycloudflare.com"
+embedded = true
+
+[build]
+include_config_on_deploy = true
+automatically_update_urls_on_dev = true
+
+[webhooks]
+api_version = "2025-07"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+scopes = "read_products,read_customers, read_orders"
+
+[auth]
+redirect_urls = ["https://segment-stranger-trunk-cloth.trycloudflare.com/auth/callback", "https://segment-stranger-trunk-cloth.trycloudflare.com/auth/shopify/callback", "https://segment-stranger-trunk-cloth.trycloudflare.com/api/auth/callback"]
+
+[pos]
+embedded = false
